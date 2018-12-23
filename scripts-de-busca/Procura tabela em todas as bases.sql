@@ -1,4 +1,13 @@
-DECLARE @object varchar(200) = 'idUsuario'
+/************************************************************************
+*	Description: Efetua uma busca no conteúdo dos objetos por uma 
+*				 referência especifica em todas as bases								
+*																		
+*	Parameters.: @object => Especifica a referência a ser pesquisada
+*							nas bases					
+*	
+*	ESSE SCRIPT PODE DEMORAR PARA SER EXECUTADO																
+*************************************************************************/
+DECLARE @object varchar(200) = ''
 DECLARE @dataBases	TABLE(name varchar(100), row int)
 DECLARE @result TABLE (
 	[database] varchar(50),
