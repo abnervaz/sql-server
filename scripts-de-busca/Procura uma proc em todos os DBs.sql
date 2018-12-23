@@ -1,4 +1,4 @@
-DECLARE @Procedure VARCHAR(100) = 'UsuariosTrilhas_Processar' -- PARÂMETRO
+DECLARE @Procedure VARCHAR(100) = '' -- PARÃ‚METRO
 /*******************************************************************
 ********************************************************************
 ********************************************************************/
@@ -11,7 +11,7 @@ DECLARE @row		INT
 INSERT INTO @dataBases
 SELECT b.name, ROW_NUMBER () OVER(ORDER BY b.database_id) AS r 
   FROM sys.databases AS b 
- WHERE b.collation_name = 'Latin1_General_CI_AS' AND b.state = 0
+ WHERE b.state = 0 -- Somente bases ativas
 
 SELECT @row = MAX(row) FROM @dataBases
 
