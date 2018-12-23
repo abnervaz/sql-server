@@ -15,7 +15,7 @@ DECLARE @row		INT
 INSERT INTO @dataBases
 SELECT b.name, ROW_NUMBER () OVER(ORDER BY b.database_id) AS r 
   FROM sys.databases AS b 
- WHERE b.collation_name = 'Latin1_General_CI_AS' AND b.state = 0
+ WHERE b.state = 0 --Somente bases online
 
 SELECT @row = MAX(row) FROM @dataBases
 
