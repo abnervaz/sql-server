@@ -1,7 +1,11 @@
-DECLARE @Procedure VARCHAR(100) = '' -- PARÂMETRO
-/*******************************************************************
-********************************************************************
-********************************************************************/
+/*******************************************************************************
+*	Description: Procura em todas as bases por uma determinada procedure							
+*																		
+*	Parameters.: @Procedure => Especifica o nome da procedure que deseja
+*				   pesquisar					
+*																		
+********************************************************************************/
+DECLARE @Procedure VARCHAR(100) = ''
 DECLARE @dataBases	TABLE(name varchar(100), row int)
 DECLARE @result TABLE (
 	[database] varchar(50)
@@ -11,7 +15,7 @@ DECLARE @row		INT
 INSERT INTO @dataBases
 SELECT b.name, ROW_NUMBER () OVER(ORDER BY b.database_id) AS r 
   FROM sys.databases AS b 
- WHERE b.state = 0 -- Somente bases ativas
+ WHERE b.collation_name = 'Latin1_General_CI_AS' AND b.state = 0
 
 SELECT @row = MAX(row) FROM @dataBases
 
